@@ -18,7 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "build:netlify": "nest build && cp -R dist/* functions/"
+    "clean:functions": "rm -rf functions/*",
+    "build:netlify": "nest build && npm run clean:functions && mkdir -p functions && cp -R dist/* functions/"
   },
   "dependencies": {
     "@fastify/cookie": "^9.3.1",

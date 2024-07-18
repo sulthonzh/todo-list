@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import serverlessExpress from '@vendia/serverless-express';
+import express from 'express';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import * as express from 'express';
 
-let cachedServer;
+let cachedServer: any;
 
 const bootstrapServer = async () => {
   const expressApp = express();
@@ -13,7 +13,7 @@ const bootstrapServer = async () => {
   return serverlessExpress({ app: expressApp });
 };
 
-export const handler = async (event, context) => {
+export const handler = async (event: any, context: any) => {
   if (!cachedServer) {
     cachedServer = await bootstrapServer();
   }
